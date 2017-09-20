@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="/">
+    <file>index.html</file>
+    <file>qwebchannel.js</file>
+    <file>marked.min.js</file>
+    <file>default.md</file>
+    <file>markdown.css</file>
+  </qresource>
+  <qresource prefix="markdownplus">
+    <file>markDownPlus/src/jqueryui/1.12.1/jquery-ui.min.css</file>
+    <file>markDownPlus/src/jqueryui/1.12.0/jquery-ui.min.js</file>
+    <file>markDownPlus/src/jquery.layout/1.4.3/jquery.layout.min.js</file>
+    <file>markDownPlus/src/jquery.layout/1.4.3/layout-default.css</file>
+    <file>markDownPlus/src/index.bundle.css</file>
+    <file>markDownPlus/src/index.bundle.js</file>
+    <file>markDownPlus/src/remodal/1.1.1/remodal.min.css</file>
+    <file>markDownPlus/src/remodal/1.1.1/remodal.min.js</file>
+    <file>markDownPlus/src/remodal/1.1.1/remodal-default-theme.min.css</file>
+    <file>markDownPlus/dist/icon.png</file>
+    <file>markDownPlus/dist/sample.md</file>
+    <file>markDownPlus/dist/index.html</file>
+  </qresource>
+</RCC>
