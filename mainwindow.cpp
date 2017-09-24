@@ -169,8 +169,9 @@ void MainWindow::onFileSave()
                                  QDir::toNativeSeparators(m_filePath), f.errorString()));
         return;
     }
-    QTextStream str(&f);
-    str << ui->editor->toPlainText();
+    QTextStream out(&f);
+	out.setCodec("UTF-8");//输出时要设置编码格式，否则可能出现中文字符乱码现象。
+	out << ui->editor->toPlainText();
 
     ui->editor->document()->setModified(false);
 }
@@ -178,7 +179,7 @@ void MainWindow::onFileSave()
 void MainWindow::onFileSaveAs()
 {
     QString path = QFileDialog::getSaveFileName(this,
-        tr("Save MarkDown File"), "", tr("MarkDown File (*.md, *.markdown)"));
+        tr("Save MarkDown File"), "", tr("MarkDown File (*.md ,*.markdown)"));//注意selectFilter的文件名要跟后面的逗号空格分开，碰到了后面的逗号被作为文件名的问题
     if (path.isEmpty())
         return;
     m_filePath = path;
@@ -201,7 +202,7 @@ void MainWindow::onMarkDownPlusChecked(bool checked)
 	if (checked)
 	{
 		ui->stackedWidget->setCurrentIndex(1);//1 is the markdownplus Editor 's page number.
-		m_pWebView->load(QUrl("qrc:/markdownplus/markDownPlus/dist/index.html"));
+		m_pWebView->load(QUrl("D:/project/markdown-plus/markdowneditor/resources/markDownPlus/dist/index.html"));
 	}
 }
 

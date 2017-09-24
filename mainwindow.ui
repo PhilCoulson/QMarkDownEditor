@@ -14,9 +14,9 @@
    <string>MarkDown Editor</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_Center">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
     <property name="spacing">
-     <number>3</number>
+     <number>0</number>
     </property>
     <property name="leftMargin">
      <number>0</number>
@@ -33,12 +33,12 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
-       <layout class="QHBoxLayout" name="horizontalLayout_page1">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="spacing">
-         <number>3</number>
+         <number>0</number>
         </property>
         <property name="leftMargin">
          <number>0</number>
@@ -57,18 +57,53 @@
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
+          <widget class="QToolBox" name="toolBox">
+           <property name="acceptDrops">
+            <bool>true</bool>
+           </property>
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <widget class="QWidget" name="toolBoxPage_0">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>160</width>
+              <height>503</height>
+             </rect>
+            </property>
+            <attribute name="label">
+             <string>常 用</string>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="toolBoxPage_1">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>160</width>
+              <height>503</height>
+             </rect>
+            </property>
+            <attribute name="label">
+             <string>笔  记</string>
+            </attribute>
+           </widget>
+          </widget>
           <widget class="QPlainTextEdit" name="editor"/>
-          <widget class="QWebEngineView" name="preview" native="true"/>
+          <widget class="QWebEngineView" name="preview" native="true">
+           <property name="acceptDrops">
+            <bool>true</bool>
+           </property>
+          </widget>
          </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_2">
        <property name="styleSheet">
-        <string notr="true">#page_2
-{
-	background-color: rgb(255,0,0);
-}</string>
+        <string notr="true"/>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_page2">
         <property name="spacing">

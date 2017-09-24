@@ -22,6 +22,7 @@
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QToolBox>
 #include <QtWidgets/QWidget>
 #include "qwebengineview.h"
 
@@ -38,11 +39,14 @@ public:
     QAction *actionTiny_Editor;
     QAction *actionMarkDown_Plus;
     QWidget *centralwidget;
-    QHBoxLayout *horizontalLayout_Center;
+    QHBoxLayout *horizontalLayout_2;
     QStackedWidget *stackedWidget;
     QWidget *page;
-    QHBoxLayout *horizontalLayout_page1;
+    QHBoxLayout *horizontalLayout;
     QSplitter *splitter;
+    QToolBox *toolBox;
+    QWidget *toolBoxPage_0;
+    QWidget *toolBoxPage_1;
     QPlainTextEdit *editor;
     QWebEngineView *preview;
     QWidget *page_2;
@@ -76,44 +80,54 @@ public:
         actionMarkDown_Plus->setCheckable(true);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        horizontalLayout_Center = new QHBoxLayout(centralwidget);
-        horizontalLayout_Center->setSpacing(3);
-        horizontalLayout_Center->setObjectName(QStringLiteral("horizontalLayout_Center"));
-        horizontalLayout_Center->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_2 = new QHBoxLayout(centralwidget);
+        horizontalLayout_2->setSpacing(0);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        horizontalLayout_page1 = new QHBoxLayout(page);
-        horizontalLayout_page1->setSpacing(3);
-        horizontalLayout_page1->setObjectName(QStringLiteral("horizontalLayout_page1"));
-        horizontalLayout_page1->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout = new QHBoxLayout(page);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         splitter = new QSplitter(page);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
+        toolBox = new QToolBox(splitter);
+        toolBox->setObjectName(QStringLiteral("toolBox"));
+        toolBox->setAcceptDrops(true);
+        toolBoxPage_0 = new QWidget();
+        toolBoxPage_0->setObjectName(QStringLiteral("toolBoxPage_0"));
+        toolBoxPage_0->setGeometry(QRect(0, 0, 160, 503));
+        toolBox->addItem(toolBoxPage_0, QString::fromUtf8("\345\270\270 \347\224\250"));
+        toolBoxPage_1 = new QWidget();
+        toolBoxPage_1->setObjectName(QStringLiteral("toolBoxPage_1"));
+        toolBoxPage_1->setGeometry(QRect(0, 0, 160, 503));
+        toolBox->addItem(toolBoxPage_1, QString::fromUtf8("\347\254\224  \350\256\260"));
+        splitter->addWidget(toolBox);
         editor = new QPlainTextEdit(splitter);
         editor->setObjectName(QStringLiteral("editor"));
         splitter->addWidget(editor);
         preview = new QWebEngineView(splitter);
         preview->setObjectName(QStringLiteral("preview"));
+        preview->setAcceptDrops(true);
         splitter->addWidget(preview);
 
-        horizontalLayout_page1->addWidget(splitter);
+        horizontalLayout->addWidget(splitter);
 
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setStyleSheet(QLatin1String("#page_2\n"
-"{\n"
-"	background-color: rgb(255,0,0);\n"
-"}"));
+        page_2->setStyleSheet(QStringLiteral(""));
         horizontalLayout_page2 = new QHBoxLayout(page_2);
         horizontalLayout_page2->setSpacing(3);
         horizontalLayout_page2->setObjectName(QStringLiteral("horizontalLayout_page2"));
         horizontalLayout_page2->setContentsMargins(9, 9, 9, 9);
         stackedWidget->addWidget(page_2);
 
-        horizontalLayout_Center->addWidget(stackedWidget);
+        horizontalLayout_2->addWidget(stackedWidget);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -141,7 +155,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
+        toolBox->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -176,6 +191,8 @@ public:
         actionNew->setShortcut(QApplication::translate("MainWindow", "Ctrl+N", Q_NULLPTR));
         actionTiny_Editor->setText(QApplication::translate("MainWindow", "Tiny Editor", Q_NULLPTR));
         actionMarkDown_Plus->setText(QApplication::translate("MainWindow", "MarkDown Plus", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(toolBoxPage_0), QApplication::translate("MainWindow", "\345\270\270 \347\224\250", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(toolBoxPage_1), QApplication::translate("MainWindow", "\347\254\224  \350\256\260", Q_NULLPTR));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", Q_NULLPTR));
         menuEditor->setTitle(QApplication::translate("MainWindow", "Editor", Q_NULLPTR));
     } // retranslateUi
