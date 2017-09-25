@@ -38,6 +38,7 @@ public:
     QAction *actionNew;
     QAction *actionTiny_Editor;
     QAction *actionMarkDown_Plus;
+    QAction *actionCSDN;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QStackedWidget *stackedWidget;
@@ -54,6 +55,8 @@ public:
     QMenuBar *menubar;
     QMenu *menu_File;
     QMenu *menuEditor;
+    QMenu *menuGO;
+    QMenu *menuSetting;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -78,6 +81,8 @@ public:
         actionMarkDown_Plus = new QAction(MainWindow);
         actionMarkDown_Plus->setObjectName(QStringLiteral("actionMarkDown_Plus"));
         actionMarkDown_Plus->setCheckable(true);
+        actionCSDN = new QAction(MainWindow);
+        actionCSDN->setObjectName(QStringLiteral("actionCSDN"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         horizontalLayout_2 = new QHBoxLayout(centralwidget);
@@ -100,11 +105,11 @@ public:
         toolBox->setAcceptDrops(true);
         toolBoxPage_0 = new QWidget();
         toolBoxPage_0->setObjectName(QStringLiteral("toolBoxPage_0"));
-        toolBoxPage_0->setGeometry(QRect(0, 0, 160, 503));
+        toolBoxPage_0->setGeometry(QRect(0, 0, 128, 503));
         toolBox->addItem(toolBoxPage_0, QString::fromUtf8("\345\270\270 \347\224\250"));
         toolBoxPage_1 = new QWidget();
         toolBoxPage_1->setObjectName(QStringLiteral("toolBoxPage_1"));
-        toolBoxPage_1->setGeometry(QRect(0, 0, 160, 503));
+        toolBoxPage_1->setGeometry(QRect(0, 0, 128, 503));
         toolBox->addItem(toolBoxPage_1, QString::fromUtf8("\347\254\224  \350\256\260"));
         splitter->addWidget(toolBox);
         editor = new QPlainTextEdit(splitter);
@@ -137,6 +142,10 @@ public:
         menu_File->setObjectName(QStringLiteral("menu_File"));
         menuEditor = new QMenu(menubar);
         menuEditor->setObjectName(QStringLiteral("menuEditor"));
+        menuGO = new QMenu(menubar);
+        menuGO->setObjectName(QStringLiteral("menuGO"));
+        menuSetting = new QMenu(menubar);
+        menuSetting->setObjectName(QStringLiteral("menuSetting"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -144,6 +153,8 @@ public:
 
         menubar->addAction(menu_File->menuAction());
         menubar->addAction(menuEditor->menuAction());
+        menubar->addAction(menuGO->menuAction());
+        menubar->addAction(menuSetting->menuAction());
         menu_File->addAction(actionNew);
         menu_File->addAction(actionOpen);
         menu_File->addAction(actionSave);
@@ -152,6 +163,7 @@ public:
         menu_File->addAction(actionExit);
         menuEditor->addAction(actionTiny_Editor);
         menuEditor->addAction(actionMarkDown_Plus);
+        menuGO->addAction(actionCSDN);
 
         retranslateUi(MainWindow);
 
@@ -191,10 +203,13 @@ public:
         actionNew->setShortcut(QApplication::translate("MainWindow", "Ctrl+N", Q_NULLPTR));
         actionTiny_Editor->setText(QApplication::translate("MainWindow", "Tiny Editor", Q_NULLPTR));
         actionMarkDown_Plus->setText(QApplication::translate("MainWindow", "MarkDown Plus", Q_NULLPTR));
+        actionCSDN->setText(QApplication::translate("MainWindow", "CSDN", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(toolBoxPage_0), QApplication::translate("MainWindow", "\345\270\270 \347\224\250", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(toolBoxPage_1), QApplication::translate("MainWindow", "\347\254\224  \350\256\260", Q_NULLPTR));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", Q_NULLPTR));
         menuEditor->setTitle(QApplication::translate("MainWindow", "Editor", Q_NULLPTR));
+        menuGO->setTitle(QApplication::translate("MainWindow", "GO", Q_NULLPTR));
+        menuSetting->setTitle(QApplication::translate("MainWindow", "Setting", Q_NULLPTR));
     } // retranslateUi
 
 };

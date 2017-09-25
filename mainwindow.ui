@@ -69,7 +69,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>160</width>
+              <width>128</width>
               <height>503</height>
              </rect>
             </property>
@@ -82,7 +82,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>160</width>
+              <width>128</width>
               <height>503</height>
              </rect>
             </property>
@@ -154,8 +154,22 @@
     <addaction name="actionTiny_Editor"/>
     <addaction name="actionMarkDown_Plus"/>
    </widget>
+   <widget class="QMenu" name="menuGO">
+    <property name="title">
+     <string>GO</string>
+    </property>
+    <addaction name="actionCSDN"/>
+   </widget>
+   <widget class="QMenu" name="menuSetting">
+    <property name="title">
+     <string>Setting</string>
+    </property>
+    <addaction name="actionFile_Path"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menuEditor"/>
+   <addaction name="menuGO"/>
+   <addaction name="menuSetting"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen">
@@ -227,6 +241,16 @@
    </property>
    <property name="text">
     <string>MarkDown Plus</string>
+   </property>
+  </action>
+  <action name="actionCSDN">
+   <property name="text">
+    <string>CSDN</string>
+   </property>
+  </action>
+  <action name="actionFile_Path">
+   <property name="text">
+    <string>File Path</string>
    </property>
   </action>
  </widget>

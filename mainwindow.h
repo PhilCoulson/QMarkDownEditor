@@ -82,6 +82,7 @@ private slots:
 
 	void onMarkDownPlusChecked(bool checked);
 	void onTinyEditorChecked(bool checked);
+	void onOpenCSDN();
 private:
     bool isModified() const;
 

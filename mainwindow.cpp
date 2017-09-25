@@ -90,6 +90,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->editor->document(), &QTextDocument::modificationChanged,
             ui->actionSave, &QAction::setEnabled);
 
+	connect(ui->actionCSDN,&QAction::triggered, this, &MainWindow::onOpenCSDN());
 	// connect editor changed slots
 	m_pWebView = new QWebEngineView(this);
 	m_pWebView->setPage(new QWebEnginePage(this));
@@ -213,4 +214,32 @@ void MainWindow::onTinyEditorChecked(bool checked)
 		ui->stackedWidget->setCurrentIndex(0);//0 is the Tiny Editor 's page number.
 		//ui->wid_web2->load(QUrl("qrc:/index.html"));
 	}
+}
+
+void MainWindow::onOpenCSDN()
+{
+	
+//if changed ,ask user to save the file.
+	switch(ui->stackedWidget->currentIndex())//for dif page 
+	{
+	case 0:
+		if (isModified())
+		{
+			QMessageBox::StandardButton button = QMessageBox::question(this, widowTitle(),tr(" You will leave this page,\n Do you want to leave ?"));
+			if (button != QMessageBox::No)
+			{
+				return;
+			}
+		}
+		break;
+	case 1:
+		break;
+	default:
+		break;
+
+	}
+//save file edit
+
+//turn current editor page to the CSDN blog web page.
+
 }
