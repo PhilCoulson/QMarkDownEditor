@@ -63,6 +63,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
 	m_pWebView(nullptr),
+	m_pCSDNWebView(nullptr),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -71,6 +72,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     PreviewPage *page = new PreviewPage(this);
     ui->preview->setPage(page);
+	
+	m_csdnUrl.setUrl(QString("http://write.blog.csdn.net/postlist"));
 
     connect(ui->editor, &QPlainTextEdit::textChanged,
             [this]() { m_content.setText(ui->editor->toPlainText()); });
@@ -90,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->editor->document(), &QTextDocument::modificationChanged,
             ui->actionSave, &QAction::setEnabled);
 
-	connect(ui->actionCSDN,&QAction::triggered, this, &MainWindow::onOpenCSDN());
+	connect(ui->actionCSDN,&QAction::triggered, this, &MainWindow::onOpenCSDN);
 	// connect editor changed slots
 	m_pWebView = new QWebEngineView(this);
 	m_pWebView->setPage(new QWebEnginePage(this));
@@ -105,6 +108,12 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+
+	if (nullptr == m_pCSDNWebView)
+	{
+		delete m_pCSDNWebView;
+		m_pCSDNWebView = nullptr;
+	}
 }
 
 void MainWindow::openFile(const QString &path)
@@ -179,8 +188,9 @@ void MainWindow::onFileSave()
 
 void MainWindow::onFileSaveAs()
 {
+	QString str_DateTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
     QString path = QFileDialog::getSaveFileName(this,
-        tr("Save MarkDown File"), "", tr("MarkDown File (*.md ,*.markdown)"));//注意selectFilter的文件名要跟后面的逗号空格分开，碰到了后面的逗号被作为文件名的问题
+        tr("Save MarkDown File"), str_DateTime, tr("MarkDown File (*.md ,*.markdown)"));//注意selectFilter的文件名要跟后面的逗号空格分开，碰到了后面的逗号被作为文件名的问题
     if (path.isEmpty())
         return;
     m_filePath = path;
@@ -220,16 +230,27 @@ void MainWindow::onOpenCSDN()
 {
 	
 //if changed ,ask user to save the file.
-	switch(ui->stackedWidget->currentIndex())//for dif page 
+	int page = ui->stackedWidget->currentIndex();
+	switch(page)//for dif page 
 	{
 	case 0:
+		//文件修改保存文件
 		if (isModified())
 		{
-			QMessageBox::StandardButton button = QMessageBox::question(this, widowTitle(),tr(" You will leave this page,\n Do you want to leave ?"));
-			if (button != QMessageBox::No)
-			{
-				return;
-			}
+			onFileSaveAs();
+		}
+		if (nullptr == m_pCSDNWebView)
+		{
+			m_pCSDNWebView = new QWebEngineView(this);
+			m_pCSDNWebView->setPage(new QWebEnginePage(this));
+			m_pCSDNWebView->setAttribute(Qt::WA_InputMethodEnabled,true);
+		}
+		ui->stackedWidget->insertWidget(2,m_pCSDNWebView);
+		ui->stackedWidget->setCurrentIndex(2);
+		if (nullptr != m_pCSDNWebView)
+		{
+			m_pCSDNWebView->load(m_csdnUrl);
+			qDebug() << m_csdnUrl << endl;
 		}
 		break;
 	case 1:

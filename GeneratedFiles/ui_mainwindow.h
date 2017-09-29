@@ -39,10 +39,11 @@ public:
     QAction *actionTiny_Editor;
     QAction *actionMarkDown_Plus;
     QAction *actionCSDN;
+    QAction *actionFile_Path;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QStackedWidget *stackedWidget;
-    QWidget *page;
+    QWidget *page_markdown;
     QHBoxLayout *horizontalLayout;
     QSplitter *splitter;
     QToolBox *toolBox;
@@ -50,8 +51,9 @@ public:
     QWidget *toolBoxPage_1;
     QPlainTextEdit *editor;
     QWebEngineView *preview;
-    QWidget *page_2;
+    QWidget *page_MarkDownPlus;
     QHBoxLayout *horizontalLayout_page2;
+    QWidget *page_CSDN;
     QMenuBar *menubar;
     QMenu *menu_File;
     QMenu *menuEditor;
@@ -83,6 +85,8 @@ public:
         actionMarkDown_Plus->setCheckable(true);
         actionCSDN = new QAction(MainWindow);
         actionCSDN->setObjectName(QStringLiteral("actionCSDN"));
+        actionFile_Path = new QAction(MainWindow);
+        actionFile_Path->setObjectName(QStringLiteral("actionFile_Path"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         horizontalLayout_2 = new QHBoxLayout(centralwidget);
@@ -91,13 +95,13 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        horizontalLayout = new QHBoxLayout(page);
+        page_markdown = new QWidget();
+        page_markdown->setObjectName(QStringLiteral("page_markdown"));
+        horizontalLayout = new QHBoxLayout(page_markdown);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        splitter = new QSplitter(page);
+        splitter = new QSplitter(page_markdown);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
         toolBox = new QToolBox(splitter);
@@ -122,15 +126,18 @@ public:
 
         horizontalLayout->addWidget(splitter);
 
-        stackedWidget->addWidget(page);
-        page_2 = new QWidget();
-        page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setStyleSheet(QStringLiteral(""));
-        horizontalLayout_page2 = new QHBoxLayout(page_2);
+        stackedWidget->addWidget(page_markdown);
+        page_MarkDownPlus = new QWidget();
+        page_MarkDownPlus->setObjectName(QStringLiteral("page_MarkDownPlus"));
+        page_MarkDownPlus->setStyleSheet(QStringLiteral(""));
+        horizontalLayout_page2 = new QHBoxLayout(page_MarkDownPlus);
         horizontalLayout_page2->setSpacing(3);
         horizontalLayout_page2->setObjectName(QStringLiteral("horizontalLayout_page2"));
         horizontalLayout_page2->setContentsMargins(9, 9, 9, 9);
-        stackedWidget->addWidget(page_2);
+        stackedWidget->addWidget(page_MarkDownPlus);
+        page_CSDN = new QWidget();
+        page_CSDN->setObjectName(QStringLiteral("page_CSDN"));
+        stackedWidget->addWidget(page_CSDN);
 
         horizontalLayout_2->addWidget(stackedWidget);
 
@@ -164,6 +171,7 @@ public:
         menuEditor->addAction(actionTiny_Editor);
         menuEditor->addAction(actionMarkDown_Plus);
         menuGO->addAction(actionCSDN);
+        menuSetting->addAction(actionFile_Path);
 
         retranslateUi(MainWindow);
 
@@ -204,6 +212,7 @@ public:
         actionTiny_Editor->setText(QApplication::translate("MainWindow", "Tiny Editor", Q_NULLPTR));
         actionMarkDown_Plus->setText(QApplication::translate("MainWindow", "MarkDown Plus", Q_NULLPTR));
         actionCSDN->setText(QApplication::translate("MainWindow", "CSDN", Q_NULLPTR));
+        actionFile_Path->setText(QApplication::translate("MainWindow", "File Path", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(toolBoxPage_0), QApplication::translate("MainWindow", "\345\270\270 \347\224\250", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(toolBoxPage_1), QApplication::translate("MainWindow", "\347\254\224  \350\256\260", Q_NULLPTR));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", Q_NULLPTR));

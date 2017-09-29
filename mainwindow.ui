@@ -35,7 +35,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="page">
+      <widget class="QWidget" name="page_markdown">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="spacing">
          <number>0</number>
@@ -101,7 +101,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_2">
+      <widget class="QWidget" name="page_MarkDownPlus">
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -123,6 +123,7 @@
         </property>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_CSDN"/>
      </widget>
     </item>
    </layout>

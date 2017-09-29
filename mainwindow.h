@@ -55,6 +55,7 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QUrl>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -90,6 +91,8 @@ private:
     QString m_filePath;
     Document m_content;
 	QWebEngineView *m_pWebView;
+	QWebEngineView *m_pCSDNWebView;
+	QUrl         m_csdnUrl;
 };
 
 #endif // MAINWINDOW_H
